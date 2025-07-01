@@ -27,3 +27,7 @@ export interface MemberInput {
     memberImage?: string;
     memberPoint?: number;
 }
+export interface LoginInput {
+    memberNick: string;
+    memberPassword: string;
+}

@@ -5,7 +5,7 @@ import routerAdmin from "./views/router-admin"
 import morgan from "morgan";
 import { MORGAN_FORMAT } from "./libs/config";
 
-/** 1-ENTRACE **/
+/** 1-ENTRACE **/ //Middleware pattern orqali
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
