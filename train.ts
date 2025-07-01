@@ -59,19 +59,32 @@
 // takrorlangan raqamni topib qaytarsin.
 // MASALAN: majorityElement([1, 2, 3, 4, 5, 4, 3, 4]); return 4
 
-function majorityElement(arr: number[]) {
-    let count: any = {}; //type aniqlash shart qo'yilmasa ishlamaydi
-    let katta = 0;
-    let natija = arr[0];
+// function majorityElement(arr: number[]) {
+//     let count: any = {}; //type aniqlash shart qo'yilmasa ishlamaydi
+//     let katta = 0;
+//     let natija = arr[0];
 
-    arr.forEach(n => {
-        count[n] = (count[n] || 0) + 1;
-        if (count[n] > katta) {
-            katta = count[n];
-            natija = n;
-        }
-    })
-    return natija;
-}
+//     arr.forEach(n => {
+//         count[n] = (count[n] || 0) + 1;
+//         if (count[n] > katta) {
+//             katta = count[n];
+//             natija = n;
+//         }
+//     })
+//     return natija;
+// }
 
-console.log(majorityElement([1, 2, 3, 4, 5, 5, 1, 1]));
+// console.log(majorityElement([1, 2, 3, 4, 5, 5, 1, 1]));
+
+
+// TASK J:
+// Shunday function tuzing, u string qabul qilsin.
+// Va string ichidagi eng uzun so'zni qaytarsin.
+// MASALAN: findLongestWord("I came from Uzbekistan!"); return "Uzbekistan!"
+
+function findLongestWord(str: string) {
+    const result = str.split(" ").reduce((a, b) => (a.length > b.length ? a : b));
+    return result;
+};
+
+console.log(findLongestWord("I came from Uzbekistan!"));

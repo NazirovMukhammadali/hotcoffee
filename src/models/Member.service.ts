@@ -44,7 +44,6 @@ class MemberService {
             member.memberPassword
         );
 
-        // const isMatch = input.memberPassword === member.memberPassword;
         if (!isMatch) {
             throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
         }
