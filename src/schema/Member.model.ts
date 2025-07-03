@@ -16,19 +16,19 @@ const memberSchema = new Schema({
 
     memberNick: {
         type: String,
-        index: { unique: true, sparse: true },
-        required: true,
+        index: { unique: true, sparse: true },  // Takrorlanmas nickname
+        required: true,  // Majburiy qiymat
     },
 
     memberPhone: {
         type: String,
-        index: { unique: true, sparse: true },
+        index: { unique: true, sparse: true }, // Telefon raqam ham unique bo'lishi kerak
         required: true,
     },
 
     memberPassword: {
         type: String,
-        select: false,
+        select: false, // Parolni so‘rovda ko‘rsatmaydi
         required: true,
     },
 

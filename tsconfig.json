@@ -1,23 +1,23 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
-    "outDir": "./dist",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./",
+    "target": "ES2020", // JavaScript'ga transpile qilinganda ES2020 standarti bo'yicha chiqariladi
+    "module": "commonjs", // Node.js bilan mos bo'lgan CommonJS modul tizimidan foydalaniladi
+    "outDir": "./dist", // Transpile qilingan fayllar chiqadigan joy (ya'ni build folder)
+    "strict": true, // TypeScript'ning barcha qat'iy tekshiruvlarini yoqadi (type safety)
+    "esModuleInterop": true, // default export'larni CommonJS modulida import qilishni osonlashtiradi
+    "skipLibCheck": true, // node_modules ichidagi .d.ts fayllarni tekshirmaydi (tezroq build uchun)
+    "forceConsistentCasingInFileNames": true, // Fayl nomlarida katta-kichik harf farqlari qat'iy nazorat qilinadi (case-sensitive)
+    "baseUrl": "./", // import path'lar uchun bazaviy yo'l (projekt root)
     "paths": {
       "*": [
-        "node_modules/*"
+        "node_modules/*" // `*` importlar uchun `node_modules` dan qidiriladi
       ]
     }
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts" // `src` papkasidagi barcha `.ts` fayllar build qilinadi
   ],
   "exclude": [
-    "node_modules"
+    "node_modules" // `node_modules` fayllari build jarayonidan chiqarib tashlanadi
   ]
 }

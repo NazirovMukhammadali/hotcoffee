@@ -14,3 +14,8 @@ Rest API                    BURAK
 GraphQL API
 ...
 */
+
+/*
+Traditional FD => BSSR
+Modern FD => SPA => REACT 
+*/
