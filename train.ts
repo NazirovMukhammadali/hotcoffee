@@ -95,13 +95,27 @@
 // ekanligini aniqlovchi function tuzing
 // MASALAN: countVowels("string"); return 1
 
-function countVowels(str: string) {
-    const unli = ['a', 'o', 'u', 'i', 'e',];
-    const kattakichik = str.toLowerCase();
-    const harflar = kattakichik.split('');
-    const result = harflar.filter(h => unli.includes(h));
-    return result.length;
+// function countVowels(str: string) {
+//     const unli = ['a', 'o', 'u', 'i', 'e',];
+//     const kattakichik = str.toLowerCase();
+//     const harflar = kattakichik.split('');
+//     const result = harflar.filter(h => unli.includes(h));
+//     return result.length;
+// }
+
+// console.log(countVowels("Hello World"));
+// console.log(countVowels("Hello Ali"));
+
+
+// L-TASK: 
+// Shunday function yozing, u string qabul qilsin va string ichidagi hamma sozlarni chappasiga yozib va sozlar ketma-ketligini buzmasdan stringni qaytarsin.
+// MASALAN: reverseSentence("we like coding!") return "ew ekil gnidoc";
+
+function reverseSentence(str: string): string {
+    const sozlar = str.split(' ');
+    const teskariSozlar = sozlar.map(soz => soz.split('').reverse().join(''));
+    return teskariSozlar.join(' ');
 }
 
-console.log(countVowels("Hello World"));
-console.log(countVowels("Hello Ali"));
+console.log(reverseSentence("we like coding!"));
+console.log(reverseSentence("Hello World"));
