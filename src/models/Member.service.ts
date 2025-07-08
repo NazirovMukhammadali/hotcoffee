@@ -56,16 +56,20 @@ class MemberService {
         const exist = await this.memberModel
             .findOne({ memberType: MemberType.RESTAURANT }) //"RESTAURANT" tipi mavjudmi — shuni tekshiradi
             .exec();
-        if (exist) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED); // Agar mavjud bo‘lsa — xatolik chiqaradi
+        if (exist)
+            throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED); // Agar mavjud bo‘lsa — xatolik chiqaradi
 
         const salt = await bcrypt.genSalt(); // Parolni xeshlash uchun tuz (salt) yaratadi
         input.memberPassword = await bcrypt.hash(input.memberPassword, salt); // Parolni xavfsiz holga keltiradi
 
         try {
+            console.log("Signup input:", input);
             const result = await this.memberModel.create(input); // Yangi memberni bazaga qo‘shadi
             result.memberPassword = ""; // Parolni qaytariladigan objectdan olib tashlaydi
             return result;
         } catch (err) {
+            console.log("Signup error:", err);
+            console.dir(err, { depth: null });
             throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
         }
     }
