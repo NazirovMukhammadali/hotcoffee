@@ -8,14 +8,25 @@
 - Error handling
 */
 
-/*
+/* Request
 Traditional API             BURAK
 Rest API                    BURAK
 GraphQL API
 ...
 */
 
-/*
+/* Frontend Develoment
 Traditional FD => BSSR
 Modern FD => SPA => REACT 
+*/
+
+/* Cookies
+request join
+self destroy
+*/
+
+/* Validation
+Fronted validation
+Backend validation
+Database validation
 */
