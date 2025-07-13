@@ -125,12 +125,28 @@
 // Shunday function yozing, u raqamlardan tashkil topgan array qabul qilsin va array ichidagi har bir raqam uchun raqamni ozi va hamda osha raqamni kvadratidan tashkil topgan object hosil qilib, hosil bolgan objectlarni array ichida qaytarsin.
 // MASALAN: getSquareNumbers([1, 2, 3]) return [{number: 1, square: 1}, {number: 2, square: 4}, {number: 3, square: 9}];
 
-function getSquareNumbers(arr: number[]): { number: number; square: number }[] {
-    return arr.map(son => ({
-        number: son,
-        square: son * son
-    }))
+// function getSquareNumbers(arr: number[]): { number: number; square: number }[] {
+//     return arr.map(son => ({
+//         number: son,
+//         square: son * son
+//     }))
+// }
+
+// console.log(getSquareNumbers([1, 2, 3]))
+// console.log(getSquareNumbers([5, 10, 15]));
+
+
+// TASK N:
+// Parametr sifatida yagona string qabul qiladigan function tuzing.
+// Va bu function string'ni palindrom so'z yoki palindrom so'z emasligini aniqlab (boolean)
+// 'true' yokida 'false' qaytarsin.
+// MASALAN: palindromCheck("dad") return true; palindromCheck("son") return false;
+
+function palindromCheck(word: string): boolean {
+    const lowerCased = word.toLowerCase();
+    const reversed = lowerCased.split('').reverse().join('');
+    return lowerCased === reversed;
 }
 
-console.log(getSquareNumbers([1, 2, 3]))
-console.log(getSquareNumbers([5, 10, 15]));
+console.log(palindromCheck("dad"));
+console.log(palindromCheck("son"));

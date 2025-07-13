@@ -4,7 +4,7 @@ import {
     ProductSize,
     ProductStatus,
     ProductVolume,
-} from "../libs/enums/product.enam";
+} from "../libs/enums/product.enum";
 
 const productSchema = new Schema(
     {
@@ -43,14 +43,13 @@ const productSchema = new Schema(
         },
 
         productVolume: {
-            type: String,
+            type: Number,
             enum: ProductVolume,
             default: ProductVolume.ONE,
         },
 
         productDesc: {
             type: String,
-            required: true,
         },
 
 

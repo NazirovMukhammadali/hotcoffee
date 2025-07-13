@@ -12,7 +12,6 @@ class MemberService {
     }
 
     /* SPA */
-
     public async signup(input: MemberInput): Promise<Member> {
         const salt = await bcrypt.genSalt(); // Parolni xeshlash uchun tuz (salt) yaratadi
         input.memberPassword = await bcrypt.hash(input.memberPassword, salt); // Parolni xavfsiz holga keltiradi
@@ -51,7 +50,6 @@ class MemberService {
 
 
     /* BSSR */
-
     public async processSignup(input: MemberInput): Promise<Member> {
         const exist = await this.memberModel
             .findOne({ memberType: MemberType.RESTAURANT }) //"RESTAURANT" tipi mavjudmi — shuni tekshiradi

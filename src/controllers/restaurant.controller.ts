@@ -1,15 +1,18 @@
-import { NextFunction, Request, Response } from "express";                      // Express'ning request va response tiplari
+import { NextFunction, Request, Response } from "express";        // Express'ning request va response tiplari
 import { T } from "../libs/types/common";                         // Controller type
 import MemberService from "../models/Member.service";             // Biznes logika joylashgan service class
 import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";   // Login va signup uchun typelar
 import { MemberType } from "../libs/enums/member.enum";           // Foydalanuvchi turlari
-import Errors, { Message } from "../libs/Errors";
+import Errors, { HttpCode, Message } from "../libs/Errors";
 
 const memberService = new MemberService(); // Service chaqiriladi
 
 const restaurantController: T = {}; // Controller funksiyalar saqlanadigan bo‘sh obyekt
 
-restaurantController.goHome = (req: Request, res: Response) => {
+restaurantController.goHome = (
+    req: Request,
+    res: Response
+) => {
     try {
         console.log("goHome");
         res.render("home");
@@ -19,7 +22,10 @@ restaurantController.goHome = (req: Request, res: Response) => {
     }
 };
 
-restaurantController.getSignup = (req: Request, res: Response) => {
+restaurantController.getSignup = (
+    req: Request,
+    res: Response
+) => {
     try {
         console.log("getSignup");
         res.render("signup");
@@ -29,7 +35,10 @@ restaurantController.getSignup = (req: Request, res: Response) => {
     }
 };
 
-restaurantController.getLogin = (req: Request, res: Response) => {
+restaurantController.getLogin = (
+    req: Request,
+    res: Response
+) => {
     try {
         console.log("getLogin");
         res.render("login");
@@ -47,16 +56,19 @@ restaurantController.processSignup = async (
 ) => {
     try {
         console.log("processSignup");
-        // console.log("body:", req.body);
+        const file = req.file;
+        if (!file)
+            throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
 
-        const newMember: MemberInput = req.body
+        const newMember: MemberInput = req.body;
+        newMember.memberImage = file?.path.replace(/\\/g, "/");
         newMember.memberType = MemberType.RESTAURANT; // Admin orqali faqat RESTAURANT turida a’zo yaratiladi
         const result = await memberService.processSignup(newMember); // Ro‘yxatdan o‘tkazamiz
         // TODO: AUTHENTICATION
 
         req.session.member = result;
         req.session.save(function () {
-            res.send(result); // Natijani yuboramiz
+            res.redirect("/admin/product/all");
         });
 
     } catch (err) {
@@ -70,7 +82,10 @@ restaurantController.processSignup = async (
 };
 
 
-restaurantController.processLogin = async (req: AdminRequest, res: Response) => { // javascript / typescriptda promise qulay sintaksis va await ishlashiga ruhsat beradi
+restaurantController.processLogin = async (
+    req: AdminRequest,
+    res: Response
+) => {
     try {
         console.log("processLogin");
         console.log("body:", req.body); // Foydalanuvchi yuborgan login ma’lumotlari
@@ -80,7 +95,7 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
 
         req.session.member = result;
         req.session.save(function () {
-            res.send(result); // Natijani yuboramiz
+            res.redirect("/admin/product/all");
         });
 
     } catch (err) {
@@ -93,7 +108,10 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
     }
 };
 
-restaurantController.logout = async (req: AdminRequest, res: Response) => { // javascript / typescriptda promise qulay sintaksis va await ishlashiga ruhsat beradi
+restaurantController.logout = async (
+    req: AdminRequest,
+    res: Response
+) => {
     try {
         console.log("logout");
         req.session.destroy(function () {
@@ -106,7 +124,10 @@ restaurantController.logout = async (req: AdminRequest, res: Response) => { // j
     }
 };
 
-restaurantController.checkAuthSession = async (req: AdminRequest, res: Response) => { // javascript / typescriptda promise qulay sintaksis va await ishlashiga ruhsat beradi
+restaurantController.checkAuthSession = async (
+    req: AdminRequest,
+    res: Response
+) => {
     try {
         console.log("checkAuthSession");
         if (req.session?.member)
