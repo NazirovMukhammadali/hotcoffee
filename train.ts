@@ -142,11 +142,29 @@
 // 'true' yokida 'false' qaytarsin.
 // MASALAN: palindromCheck("dad") return true; palindromCheck("son") return false;
 
-function palindromCheck(word: string): boolean {
-    const lowerCased = word.toLowerCase();
-    const reversed = lowerCased.split('').reverse().join('');
-    return lowerCased === reversed;
+// function palindromCheck(word: string): boolean {
+//     const lowerCased = word.toLowerCase();
+//     const reversed = lowerCased.split('').reverse().join('');
+//     return lowerCased === reversed;
+// }
+
+// console.log(palindromCheck("dad"));
+// console.log(palindromCheck("son"));
+
+
+// O-TASK:
+// Shunday function yozing, u har xil valuelardan iborat array qabul qilsin va array 
+// ichidagi sonlar yigindisini hisoblab chiqqan javobni qaytarsin.
+// MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
+
+function calculateSumOfNumbers(arr: any[]): number {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (typeof arr[i] === "number") {
+            sum += arr[i];
+        }
+    }
+    return sum;
 }
 
-console.log(palindromCheck("dad"));
-console.log(palindromCheck("son"));
+console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35]));

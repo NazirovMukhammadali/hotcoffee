@@ -1,8 +1,8 @@
 import express from "express";
 const routerAdmin = express.Router();
-import restaurantController from "../controllers/restaurant.controller";
-import productController from "../controllers/product.controller";
-import makeUploader from "../libs/types/utils/uploader";
+import restaurantController from "./controllers/restaurant.controller";
+import productController from "./controllers/product.controller";
+import makeUploader from "./libs/types/utils/uploader";
 
 /* Restaurant */
 routerAdmin.get("/", restaurantController.goHome);
@@ -14,7 +14,7 @@ routerAdmin
 routerAdmin
     .get("/signup", restaurantController.getSignup)
     .post(
-        "signup",
+        "/signup",
         makeUploader("members").single("memberImage"),
         restaurantController.processSignup
     );
@@ -43,5 +43,15 @@ routerAdmin.post(
 );
 
 /* User */
+routerAdmin.get(
+    "/user/all",
+    restaurantController.verifyRestaurant,
+    restaurantController.getUsers
+);
+routerAdmin.post(
+    "/user/edit",
+    restaurantController.verifyRestaurant,
+    restaurantController.updateChosenUser
+);
 
 export default routerAdmin;

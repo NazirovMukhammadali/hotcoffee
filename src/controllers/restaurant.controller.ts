@@ -1,13 +1,13 @@
-import { NextFunction, Request, Response } from "express";        // Express'ning request va response tiplari
-import { T } from "../libs/types/common";                         // Controller type
-import MemberService from "../models/Member.service";             // Biznes logika joylashgan service class
-import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";   // Login va signup uchun typelar
-import { MemberType } from "../libs/enums/member.enum";           // Foydalanuvchi turlari
+import { NextFunction, Request, Response } from "express";
+import { T } from "../libs/types/common";
+import MemberService from "../models/Member.service";
+import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";
+import { MemberType } from "../libs/enums/member.enum";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 
-const memberService = new MemberService(); // Service chaqiriladi
+const memberService = new MemberService();
 
-const restaurantController: T = {}; // Controller funksiyalar saqlanadigan bo‘sh obyekt
+const restaurantController: T = {};
 
 restaurantController.goHome = (
     req: Request,
@@ -121,6 +121,37 @@ restaurantController.logout = async (
     } catch (err) {
         console.log("Error, logout:", err);
         res.redirect("/admin");
+    }
+};
+
+restaurantController.getUsers = async (
+    req: Request,
+    res: Response
+) => {
+    try {
+        console.log("getUsers");
+        const result = await memberService.getUsers();
+
+        res.render("users", { users: result });
+    } catch (err) {
+        console.log("Error, getUsers:", err);
+        res.redirect("/admin/login");
+    }
+};
+
+restaurantController.updateChosenUser = async (
+    req: Request,
+    res: Response
+) => {
+    try {
+        console.log("updateChosenUser");
+        const result = await memberService.updateChosenUser(req.body);
+
+        res.status(HttpCode.OK).json({ data: result });
+    } catch (err) {
+        console.log("Error, updateChosenUser:", err);
+        if (err instanceof Errors) res.status(err.code).json(err);
+        else res.status(Errors.standard.code).json(Errors.standard);
     }
 };
 

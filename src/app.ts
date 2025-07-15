@@ -1,9 +1,9 @@
-import express from "express"; // Express framework: HTTP serverni boshqarish uchun
+import express from "express";
 import path from "path";
-import router from "./views/router"; // Asosiy (foydalanuvchi) marshrutlar (SPA: React bilan bog‘liq)
-import routerAdmin from "./views/router-admin"; // Admin interfeys uchun marshrutlar (SSR: EJS bilan bog‘liq)
-import morgan from "morgan"; // HTTP so‘rovlarni logga chiqaruvchi middleware
-import { MORGAN_FORMAT } from "./libs/config"; // Morgan format
+import router from "./router";
+import routerAdmin from "./router-admin";
+import morgan from "morgan";
+import { MORGAN_FORMAT } from "./libs/config";
 
 import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session";
@@ -18,7 +18,7 @@ const store = new MongoDBStore({
 /** 1-ENTRACE **/ //Middleware pattern orqali
 const app = express(); // object > backend qurish
 app.use(express.static(path.join(__dirname, "public"))); // public ochiqlash / middleware DP 
-app.use(express.urlencoded({ extended: true })); // HTML form ma'lumotlarini `req.body`ga  qiladi middleware dp > support traditional api
+app.use(express.urlencoded({ extended: true })); // middleware dp > support traditional api
 app.use(express.json()); // middleware dp > support rest api
 app.use(morgan(MORGAN_FORMAT));
 
