@@ -157,14 +157,29 @@
 // ichidagi sonlar yigindisini hisoblab chiqqan javobni qaytarsin.
 // MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
 
-function calculateSumOfNumbers(arr: any[]): number {
-    let sum = 0;
-    for (let i = 0; i < arr.length; i++) {
-        if (typeof arr[i] === "number") {
-            sum += arr[i];
-        }
-    }
-    return sum;
+// function calculateSumOfNumbers(arr: any[]): number {
+//     let sum = 0;
+//     for (let i = 0; i < arr.length; i++) {
+//         if (typeof arr[i] === "number") {
+//             sum += arr[i];
+//         }
+//     }
+//     return sum;
+// }
+
+// console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35]));
+
+
+// P-TASK:
+// Shunday function yozing, u object qabul qilsin va arrayni object arrayga otkazib arrayni qaytarsin.
+// MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]
+
+function objectToArray(obj: any) {
+    let arr: [string, any][] = []; // typeni array ichida ham aniqlash mumkin
+    for (let key in obj)
+        arr.push([key, obj[key]]);
+
+    return arr;
 }
 
-console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35]));
+console.log(objectToArray({ a: 10, b: 20 }));

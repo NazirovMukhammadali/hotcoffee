@@ -62,8 +62,8 @@ restaurantController.processSignup = async (
 
         const newMember: MemberInput = req.body;
         newMember.memberImage = file?.path.replace(/\\/g, "/");
-        newMember.memberType = MemberType.RESTAURANT; // Admin orqali faqat RESTAURANT turida a’zo yaratiladi
-        const result = await memberService.processSignup(newMember); // Ro‘yxatdan o‘tkazamiz
+        newMember.memberType = MemberType.RESTAURANT;
+        const result = await memberService.processSignup(newMember);
         // TODO: AUTHENTICATION
 
         req.session.member = result;
@@ -76,7 +76,7 @@ restaurantController.processSignup = async (
         const message =
             err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
         res.send(
-            `<script> alert("${message}"); window.location.replace('admin/login') </script>`
+            `<script> alert("${message}"); window.location.replace('/admin/signup') </script>`
         );
     }
 };
@@ -88,9 +88,9 @@ restaurantController.processLogin = async (
 ) => {
     try {
         console.log("processLogin");
-        console.log("body:", req.body); // Foydalanuvchi yuborgan login ma’lumotlari
+        console.log("body:", req.body);
         const input: LoginInput = req.body,
-            result = await memberService.processLogin(input); // Loginni bajaradi (service ichida parol tekshiruvi bor)
+            result = await memberService.processLogin(input);
         // TODO: SESSIONS AUTHENTICATION
 
         req.session.member = result;
@@ -103,7 +103,7 @@ restaurantController.processLogin = async (
         const message =
             err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
         res.send(
-            `<script> alert("${message}"); window.location.replace('admin/login') </script>`
+            `<script> alert("${message}"); window.location.replace('/admin/login') </script>`
         );
     }
 };

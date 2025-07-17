@@ -56,7 +56,7 @@ class MemberService {
             .findOne({ memberType: MemberType.RESTAURANT })
             .exec();
         if (exist)
-            throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
+            throw new Errors(HttpCode.BAD_REQUEST, Message.NO_DATA_FOUND);
 
         const salt = await bcrypt.genSalt();
         input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
@@ -107,8 +107,11 @@ class MemberService {
 
     public async updateChosenUser(input: MemberUpdateInput): Promise<Member> {
         input._id = shapeIntoMongooseObjectId(input._id);
-        const result = await this.memberModel
-            .findByIdAndUpdate({ _id: input._id }, input, { new: true })
+        const result = await this.memberModel // member schema model / class
+            .findByIdAndUpdate(
+                { _id: input._id }, //FILTER
+                input, // UPDATE
+                { new: true }) // OPTION
             .exec();
         if (!result)
             throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
