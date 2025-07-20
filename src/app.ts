@@ -9,6 +9,7 @@ import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session";
 import { T } from "./libs/types/common";
 
+//TCP-2
 const MongoDBStore = ConnectMongoDB(session);
 const store = new MongoDBStore({
     uri: String(process.env.MONGO_URL),
@@ -16,8 +17,8 @@ const store = new MongoDBStore({
 })
 
 /** 1-ENTRACE **/ //Middleware pattern orqali
-const app = express(); // object > backend qurish
-app.use(express.static(path.join(__dirname, "public"))); // public ochiqlash / middleware DP 
+const app = express(); // object > backend qurish /tr api
+app.use(express.static(path.join(__dirname, "public"))); //public ochiqlash/middleware DP/tr api
 app.use(express.urlencoded({ extended: true })); // middleware dp > support traditional api
 app.use(express.json()); // middleware dp > support rest api
 app.use(morgan(MORGAN_FORMAT));
