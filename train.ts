@@ -174,12 +174,26 @@
 // Shunday function yozing, u object qabul qilsin va arrayni object arrayga otkazib arrayni qaytarsin.
 // MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]
 
-function objectToArray(obj: any) {
-    let arr: [string, any][] = []; // typeni array ichida ham aniqlash mumkin
-    for (let key in obj)
-        arr.push([key, obj[key]]);
+// function objectToArray(obj: any) {
+//     let arr: [string, any][] = []; // typeni array ichida ham aniqlash mumkin
+//     for (let key in obj)
+//         arr.push([key, obj[key]]);
 
-    return arr;
-}
+//     return arr;
+// }
 
-console.log(objectToArray({ a: 10, b: 20 }));
+// console.log(objectToArray({ a: 10, b: 20 }));
+
+
+// Q-TASK:
+// Shunday function yozing, u 2 ta parametrgga ega bolib birinchisi object, ikkinchisi string. Agar string parametr objectni propertysi bolsa true bolmasa false qaytarsin.
+// MASALAN: hasProperty({name: "BMW", model: "M3"}, "model") return true; hasProperty({name: "BMW", model: "M3"}, "year") return false
+
+function hasProperty(obj: object, str: string): boolean {
+    const key = Object.keys(obj); // Javascript methodi
+    return key.includes(str);
+};
+
+console.log(hasProperty({ name: "BMW", model: "M3" }, "model"));
+console.log(hasProperty({ name: "BMW", model: "M3" }, "year"));
+console.log(hasProperty({ name: "BMW", model: "M3" }, "name"));
