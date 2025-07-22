@@ -189,11 +189,29 @@
 // Shunday function yozing, u 2 ta parametrgga ega bolib birinchisi object, ikkinchisi string. Agar string parametr objectni propertysi bolsa true bolmasa false qaytarsin.
 // MASALAN: hasProperty({name: "BMW", model: "M3"}, "model") return true; hasProperty({name: "BMW", model: "M3"}, "year") return false
 
-function hasProperty(obj: object, str: string): boolean {
-    const key = Object.keys(obj); // Javascript methodi
-    return key.includes(str);
-};
+// function hasProperty(obj: object, str: string): boolean {
+//     const key = Object.keys(obj); // Javascript methodi
+//     return key.includes(str);
+// };
 
-console.log(hasProperty({ name: "BMW", model: "M3" }, "model"));
-console.log(hasProperty({ name: "BMW", model: "M3" }, "year"));
-console.log(hasProperty({ name: "BMW", model: "M3" }, "name"));
+// console.log(hasProperty({ name: "BMW", model: "M3" }, "model"));
+// console.log(hasProperty({ name: "BMW", model: "M3" }, "year"));
+// console.log(hasProperty({ name: "BMW", model: "M3" }, "name"));
+
+
+// R-TASK:
+// Shunday function yozing, u string parametrga ega bolsin. String "1+2" holatda pass qilinganda string ichidagi sonlar yigindisini number holatda qaytarsin.
+// MASALAN: calculate("1+3") return 4;
+
+function calculate(str: string) {
+    const num = str.match(/\d+/g);
+    if (!num) return 0;
+    const nums = num.map(num => Number(num));
+    let son = 0;
+    for (let i = 0; i < nums.length; i++) {
+        son += nums[i];
+    }
+    return son;
+}
+
+console.log(calculate("1+3"));
