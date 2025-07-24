@@ -203,15 +203,35 @@
 // Shunday function yozing, u string parametrga ega bolsin. String "1+2" holatda pass qilinganda string ichidagi sonlar yigindisini number holatda qaytarsin.
 // MASALAN: calculate("1+3") return 4;
 
-function calculate(str: string) {
-    const num = str.match(/\d+/g);
-    if (!num) return 0;
-    const nums = num.map(num => Number(num));
-    let son = 0;
-    for (let i = 0; i < nums.length; i++) {
-        son += nums[i];
+// function calculate(str: string) {
+//     const num = str.match(/\d+/g);
+//     if (!num) return 0;
+//     const nums = num.map(num => Number(num));
+//     let son = 0;
+//     for (let i = 0; i < nums.length; i++) {
+//         son += nums[i];
+//     }
+//     return son;
+// }
+
+// console.log(calculate("1+3"));
+
+
+// S-TASK:
+// Shunday function yozing, u numberlardan tashkil topgan array qabul qilsin va osha numberlar orasidagi tushib qolgan sonni topib uni return qilsin
+// MASALAN: missingNumber([3, 0, 1]) return 2
+
+function missingNumber(arr: number[]) {
+    const min = Math.min(...arr);
+    const max = Math.max(...arr);
+
+    for (let i = min; i <= max; i++) {
+        if (!arr.includes(i)) {
+            return i;
+        }
     }
-    return son;
+
 }
 
-console.log(calculate("1+3"));
+console.log(missingNumber([3, 4, 6]))
+console.log(missingNumber([6, 7, 9]))
