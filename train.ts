@@ -221,17 +221,30 @@
 // Shunday function yozing, u numberlardan tashkil topgan array qabul qilsin va osha numberlar orasidagi tushib qolgan sonni topib uni return qilsin
 // MASALAN: missingNumber([3, 0, 1]) return 2
 
-function missingNumber(arr: number[]) {
-    const min = Math.min(...arr);
-    const max = Math.max(...arr);
+// function missingNumber(arr: number[]) {
+//     const min = Math.min(...arr);
+//     const max = Math.max(...arr);
 
-    for (let i = min; i <= max; i++) {
-        if (!arr.includes(i)) {
-            return i;
-        }
-    }
+//     for (let i = min; i <= max; i++) {
+//         if (!arr.includes(i)) {
+//             return i;
+//         }
+//     }
 
+// }
+
+// console.log(missingNumber([3, 4, 6]))
+// console.log(missingNumber([6, 7, 9]))
+
+
+// T-TASK:
+// Shunday function yozing, u sonlardan tashkil topgan 2 ta array qabul qilsin va ikkala arraydagi sonlarni tartiblab bir arrayda qaytarsin
+// MASALAN: mergeSortedArrays([0,3,4,31], [4,6,30]); return [0,3,4,4,6,30,31]
+
+function mergeSortedArrays(arr1: number[], arr2: number[]) {
+    const add = arr1.concat(arr2);
+    add.sort((a, b) => a - b);
+    return add;
 }
 
-console.log(missingNumber([3, 4, 6]))
-console.log(missingNumber([6, 7, 9]))
+console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));

@@ -21,7 +21,7 @@ const app = express(); // object > backend qurish /tr api
 app.use(express.static(path.join(__dirname, "public"))); //public ochiqlash/middleware DP/tr api
 app.use(express.urlencoded({ extended: true })); // middleware dp > support traditional api
 app.use(express.json()); // middleware dp > support rest api
-app.use(morgan(MORGAN_FORMAT));
+app.use(morgan(MORGAN_FORMAT)); // loginni amalga oshiradi
 
 /** 2-SESSIONS **/
 app.use(
@@ -31,8 +31,8 @@ app.use(
             maxAge: 1000 * 3600 * 6, //6h
         },
         store: store,
-        resave: true,
-        saveUninitialized: true,
+        resave: true, // kirgan vaqti surilishi
+        saveUninitialized: true, // login bolmagan userlarni saqlamaslik
     })
 );
 app.use(function (req, res, next) {
