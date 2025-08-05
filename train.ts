@@ -253,15 +253,36 @@
 // Shunday function yozing, uni number parametri bolsin va 0 dan berilgan parametrgacha bolgan oraliqdagi faqat toq sonlar nechtaligini return qilsin
 // MASALAN: sumOdds(9) return 4; sumOdds(11) return 5;
 
-function sumOdds(num: number) {
-    let count = 0;
-    for (let i = 1; i < num; i++) {
-        if (i % 2 !== 0) {
-            count++;
+// function sumOdds(num: number) {
+//     let count = 0;
+//     for (let i = 1; i < num; i++) {
+//         if (i % 2 !== 0) {
+//             count++;
+//         }
+//     }
+//     return count;
+// }
+
+// console.log(sumOdds(9))
+// console.log(sumOdds(11))
+
+
+// V - TASK:
+// Shunday function yozing, uni string parametri bolsin va stringdagi harf va u harf necha marta takrorlangani sonidan tashkil topgan object qaytarsin.
+//     MASALAN: countChars("hello") return { h: 1, e: 1, l: 2, o: 1 }
+
+function countChars(str: string): Record<string, number> {
+    const result: Record<string, number> = {};
+
+    for (let char of str) {
+        if (result[char]) {
+            result[char]++;
+        } else {
+            result[char] = 1;
         }
     }
-    return count;
+
+    return result;
 }
 
-console.log(sumOdds(9))
-console.log(sumOdds(11))
+console.log(countChars("Hello"))
