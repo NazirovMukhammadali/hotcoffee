@@ -77,6 +77,19 @@ class MemberService {
         return result;
     }
 
+    //updateMember
+    public async getTopUsers(): Promise<Member[]> {
+        const result = await this.memberModel
+            .find({
+                memberStatus: MemberStatus.ACTIVE, //searching coditation
+                memberPoints: { $gte: 1 },         //searching coditation
+            })
+            .sort({ memberPoints: -1 })
+            .limit(4)
+            .exec();
+        if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+        return result;
+    }
 
     /* BSSR */
     public async processSignup(input: MemberInput): Promise<Member> {
