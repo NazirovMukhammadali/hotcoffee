@@ -20,7 +20,8 @@ const store = new MongoDBStore({
 /** 1-ENTRACE **/ //Middleware pattern orqali
 const app = express(); // object > backend qurish /tr api
 app.use(express.static(path.join(__dirname, "public"))); //public ochiqlash/middleware DP/tr api
-app.use(express.urlencoded({ extended: true })); // middleware dp > support traditional api
+app.use("/uploads", express.static("./uploads"));
+app.use(express.urlencoded({ extended: true })); // middleware dp > traditional api support 
 app.use(express.json()); // middleware dp > support rest api
 app.use(cookieParser()); // MiddleWare DP => Cookie Parser
 app.use(morgan(MORGAN_FORMAT)); // loginni amalga oshiradi
