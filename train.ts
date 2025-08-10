@@ -292,14 +292,36 @@
 // Shunday function yozing, uni array va number parametrlari bolsin. Function arrayni numberda berilgan uzunlikda kesib bolaklarga ajratilgan array holatida qaytarsin
 // MASALAN: chunkArray([1,2,3,4,5,6,7,8,9,10], 3) return [[1,2,3], [4,5,6], [7,8,9], [10]]
 
-function chunkArray(arr: number[], num: number): number[][] {
-    const result: number[][] = [];
+// function chunkArray(arr: number[], num: number): number[][] {
+//     const result: number[][] = [];
 
-    for (let i = 0; i < arr.length; i += num) {
-        result.push(arr.slice(i, i + num));
-    }
+//     for (let i = 0; i < arr.length; i += num) {
+//         result.push(arr.slice(i, i + num));
+//     }
 
-    return result;
+//     return result;
+// }
+
+// console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))
+
+
+// X-TASK:
+//  Shunday function yozing, uni object va string parapetrlari bolsin. Function string parametri object ichida necha marotaba takrorlanganligini qaytarsin (nested object bolsa ham sanasin)
+//  MASALAN: countOccurrences({model: 'Bugatti', steer: {model: 'HANKOOK', size: 30}}, 'model') return 2
+
+function countOccurrences(obj: Record<string, any>, keyToFind: string): number {
+    let count = 0;
+
+    (function search(current: any) {
+        if (typeof current === "object" && current !== null) {
+            Object.keys(current).forEach(key => {
+                if (key === keyToFind) count++;
+                search(current[key]);
+            });
+        }
+    })(obj);
+
+    return count;
 }
 
-console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))
+console.log(countOccurrences({ model: 'Bugatti', steer: { model: 'HANKOOK', size: 30 } }, 'model'))
