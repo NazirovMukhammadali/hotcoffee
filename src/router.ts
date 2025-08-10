@@ -30,6 +30,7 @@ router.get("/member/top-users", memberController.getTopUsers);
 
 
 /** Product**/
+router.get("product/all");
 
 /** Order**/
 
