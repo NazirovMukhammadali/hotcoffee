@@ -34,7 +34,7 @@ router.get("/member/top-users",
 
 /** Product**/
 router.get("product/all",
-    productController.getProduct
+    productController.getProducts
 );
 router.get(
     "/product/:id",
