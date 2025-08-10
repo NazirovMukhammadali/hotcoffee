@@ -4,6 +4,7 @@ import Errors, { HttpCode, Message } from "../libs/Errors";
 import { Product, ProductInput, ProductInquiry } from "../libs/types/product";
 import ProductModel from "../schema/Product.model";
 import { T } from "../libs/types/common";
+import { ObjectId } from "mongoose";
 
 
 class ProductServise {
@@ -20,7 +21,7 @@ class ProductServise {
         if (inquiry.productCollection)
             match.productCollection = inquiry.productCollection;
         if (inquiry.search) {
-            match.productName = { $regex: new RegExp(inquiry.search, "i") };
+            match.productName = { $regex: new RegExp(inquiry.search, "i") }; // flag "i"
         }
         const sort: T =
             inquiry.order === "productPrice"
@@ -34,6 +35,20 @@ class ProductServise {
                 { $skip: (inquiry.page * 1 - 1) * inquiry.limit }, // 0, Pagination
                 { $limit: inquiry.limit * 1 }, //3, Pagination
             ])
+            .exec();
+        if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+
+        return result;
+    }
+
+    public async getProduct(
+        memberId: ObjectId | null,
+        id: string
+    ): Promise<Product> {
+        const productId = shapeIntoMongooseObjectId(id);
+
+        let result = await this.productModel
+            .findOne({ _id: productId, roductStatus: ProductStatus.PROCESS })
             .exec();
         if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
