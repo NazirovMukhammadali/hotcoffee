@@ -32,7 +32,7 @@ class ProductServise {
             inquiry.order === "productPrice"
                 ? { [inquiry.order]: 1 }  // dynamic key
                 : { [inquiry.order]: -1 };
-
+        console.log("result", match, sort)
         const result = await this.productModel
             .aggregate([
                 { $match: match },
@@ -41,7 +41,7 @@ class ProductServise {
                 { $limit: inquiry.limit * 1 }, //3, Pagination
             ])
             .exec();
-        if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+        if (!result.length) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
         return result;
     }
@@ -53,7 +53,7 @@ class ProductServise {
         const productId = shapeIntoMongooseObjectId(id);
 
         let result = await this.productModel
-            .findOne({ _id: productId, roductStatus: ProductStatus.PROCESS })
+            .findOne({ _id: productId, productStatus: ProductStatus.PROCESS })
             .exec();
         if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
