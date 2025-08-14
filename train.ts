@@ -309,19 +309,42 @@
 //  Shunday function yozing, uni object va string parapetrlari bolsin. Function string parametri object ichida necha marotaba takrorlanganligini qaytarsin (nested object bolsa ham sanasin)
 //  MASALAN: countOccurrences({model: 'Bugatti', steer: {model: 'HANKOOK', size: 30}}, 'model') return 2
 
-function countOccurrences(obj: Record<string, any>, keyToFind: string): number {
-    let count = 0;
+// function countOccurrences(obj: Record<string, any>, keyToFind: string): number {
+//     let count = 0;
 
-    (function search(current: any) {
-        if (typeof current === "object" && current !== null) {
-            Object.keys(current).forEach(key => {
-                if (key === keyToFind) count++;
-                search(current[key]);
-            });
+//     (function search(current: any) {
+//         if (typeof current === "object" && current !== null) {
+//             Object.keys(current).forEach(key => {
+//                 if (key === keyToFind) count++;
+//                 search(current[key]);
+//             });
+//         }
+//     })(obj);
+
+//     return count;
+// }
+
+// console.log(countOccurrences({ model: 'Bugatti', steer: { model: 'HANKOOK', size: 30 } }, 'model'))
+
+
+// TASK Y
+// Shunday function yozing, uni 2'ta array parametri bo'lsin.
+// Bu function ikkala arrayda ham ishtirok etgan bir xil
+// qiymatlarni yagona arrayga joylab qaytarsin.
+// MASALAN: findIntersection([1,2,3], [3,2,0]) return [2,3]
+
+function findIntersection(arr1: number[], arr2: number[]) {
+    const set1 = new Set(arr1); // Set takrorlangan qiymatni olib tashlaydi
+    const intersection = new Set<number>();
+
+    for (const value of arr2) {
+        if (set1.has(value)) {
+            intersection.add(value);
         }
-    })(obj);
+    }
 
-    return count;
+    return Array.from(intersection).sort((a, b) => a - b);
 }
 
-console.log(countOccurrences({ model: 'Bugatti', steer: { model: 'HANKOOK', size: 30 } }, 'model'))
+console.log(findIntersection([1, 2, 3], [3, 2, 0]))
+console.log(findIntersection([5, 6], [6, 5]))
