@@ -333,18 +333,38 @@
 // qiymatlarni yagona arrayga joylab qaytarsin.
 // MASALAN: findIntersection([1,2,3], [3,2,0]) return [2,3]
 
-function findIntersection(arr1: number[], arr2: number[]) {
-    const set1 = new Set(arr1); // Set takrorlangan qiymatni olib tashlaydi
-    const intersection = new Set<number>();
+// function findIntersection(arr1: number[], arr2: number[]) {
+//     const set1 = new Set(arr1); // Set takrorlangan qiymatni olib tashlaydi
+//     const intersection = new Set<number>();
 
-    for (const value of arr2) {
-        if (set1.has(value)) {
-            intersection.add(value);
-        }
+//     for (const value of arr2) {
+//         if (set1.has(value)) {
+//             intersection.add(value);
+//         }
+//     }
+
+//     return Array.from(intersection).sort((a, b) => a - b);
+// }
+
+// console.log(findIntersection([1, 2, 3], [3, 2, 0]))
+// console.log(findIntersection([5, 6], [6, 5]))
+
+
+// Shunday function yozing. Bu function sonlardan iborat array
+// qabul qilsin. Function'ning vazifasi array tarkibidagi juft
+// sonlarni topib ularni yig'disini qaytarsin.
+// MASALAN:
+// sumEvens([1, 2, 3]); return 2;
+// sumEvens([1, 2, 3, 2]); return 4;
+
+function sumEvens(arr: number[]): number {
+    let num: number = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 === 0)
+            num += arr[i];
     }
-
-    return Array.from(intersection).sort((a, b) => a - b);
+    return num;
 }
 
-console.log(findIntersection([1, 2, 3], [3, 2, 0]))
-console.log(findIntersection([5, 6], [6, 5]))
+console.log(sumEvens([1, 2, 3, 2]));
+console.log(sumEvens([1, 2, 3,]));
