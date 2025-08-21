@@ -357,14 +357,25 @@
 // sumEvens([1, 2, 3]); return 2;
 // sumEvens([1, 2, 3, 2]); return 4;
 
-function sumEvens(arr: number[]): number {
-    let num: number = 0;
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] % 2 === 0)
-            num += arr[i];
-    }
-    return num;
-}
+// function sumEvens(arr: number[]): number {
+//     let num: number = 0;
+//     for (let i = 0; i < arr.length; i++) {
+//         if (arr[i] % 2 === 0)
+//             num += arr[i];
+//     }
+//     return num;
+// }
 
-console.log(sumEvens([1, 2, 3, 2]));
-console.log(sumEvens([1, 2, 3,]));
+// console.log(sumEvens([1, 2, 3, 2]));
+// console.log(sumEvens([1, 2, 3,]));
+
+
+// ZC-TASK:
+// Shunday function yozing, uni number parametri bolsin va function qabul parametrni selsiy miqdori 
+// sifatida qabul qilib uni farenhitga ozgartirib bersin
+// MASALAN: celsiusToFahrenheit(0) return 32
+
+function celsiusToFahrenheit(celsius: number): number {
+    return (celsius * 9 / 5) + 32;
+}
+console.log(celsiusToFahrenheit(0));
