@@ -375,7 +375,24 @@
 // sifatida qabul qilib uni farenhitga ozgartirib bersin
 // MASALAN: celsiusToFahrenheit(0) return 32
 
-function celsiusToFahrenheit(celsius: number): number {
-    return (celsius * 9 / 5) + 32;
+// function celsiusToFahrenheit(celsius: number): number {
+//     return (celsius * 9 / 5) + 32;
+// }
+// console.log(celsiusToFahrenheit(0));
+
+
+function changeNumberInArray(
+    num: number,
+    arr: number[],
+    newNum: number
+): number[] {
+    const index = arr.indexOf(num);
+
+    if (index !== -1) {
+        arr[index] = newNum;
+    }
+
+    return arr;
 }
-console.log(celsiusToFahrenheit(0));
+
+console.log(changeNumberInArray(1, [1, 3, 7, 2], 2));

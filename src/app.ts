@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import path from "path";
 import router from "./router";
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, "public"))); //public ochiqlash/midd
 app.use("/uploads", express.static("./uploads"));
 app.use(express.urlencoded({ extended: true })); // middleware dp > traditional api support 
 app.use(express.json()); // middleware dp > support rest api
+app.use(cors({ credentials: true, origin: true }));
 app.use(cookieParser()); // MiddleWare DP => Cookie Parser
 app.use(morgan(MORGAN_FORMAT)); // loginni amalga oshiradi
 
