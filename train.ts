@@ -381,18 +381,32 @@
 // console.log(celsiusToFahrenheit(0));
 
 
-function changeNumberInArray(
-    num: number,
-    arr: number[],
-    newNum: number
-): number[] {
-    const index = arr.indexOf(num);
+// function changeNumberInArray(
+//     num: number,
+//     arr: number[],
+//     newNum: number
+// ): number[] {
+//     const index = arr.indexOf(num);
 
-    if (index !== -1) {
-        arr[index] = newNum;
+//     if (index !== -1) {
+//         arr[index] = newNum;
+//     }
+
+//     return arr;
+// }
+
+// console.log(changeNumberInArray(1, [1, 3, 7, 2], 2));
+
+
+
+function removeDuplicate(str: string) {
+    let result = '';
+    for (let char of str) {
+        if (!result.includes(char)) {
+            result += char;
+        }
     }
-
-    return arr;
+    return result;
 }
 
-console.log(changeNumberInArray(1, [1, 3, 7, 2], 2));
+console.log(removeDuplicate('stringg'));
