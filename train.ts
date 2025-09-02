@@ -399,14 +399,33 @@
 
 
 
-function removeDuplicate(str: string) {
-    let result = '';
-    for (let char of str) {
-        if (!result.includes(char)) {
-            result += char;
-        }
-    }
-    return result;
+// function removeDuplicate(str: string) {
+//     let result = '';
+//     for (let char of str) {
+//         if (!result.includes(char)) {
+//             result += char;
+//         }
+//     }
+//     return result;
+// }
+
+// console.log(removeDuplicate('stringg'));
+
+
+// ZF-TASK:
+// Shunday function yozing, uni string parametri bolsin.
+// String ichidagi har bir sozni bosh harflarini katta harf qilib qaytarsin lekin 1 yoki 
+// 2 harfdan iborat sozlarni esa oz holicha qoldirsin.
+// MASALAN: capitalizeWords('name should be a string') return 'Name Should be a String'
+
+function capitalizeWords(str: string) {
+    return str
+        .split(" ")
+        .map((word: string) => {
+            if (word.length <= 2) return word;
+            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        })
+        .join(" ");
 }
 
-console.log(removeDuplicate('stringg'));
+console.log(capitalizeWords("name should be a string")); 
