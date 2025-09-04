@@ -418,14 +418,29 @@
 // 2 harfdan iborat sozlarni esa oz holicha qoldirsin.
 // MASALAN: capitalizeWords('name should be a string') return 'Name Should be a String'
 
-function capitalizeWords(str: string) {
+// function capitalizeWords(str: string) {
+//     return str
+//         .split(" ")
+//         .map((word: string) => {
+//             if (word.length <= 2) return word;
+//             return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+//         })
+//         .join(" ");
+// }
+
+// console.log(capitalizeWords("name should be a string")); 
+
+
+// ZG-TASK:
+// Shunday function yozing, u berilgan string parametrni snake casega otkazib qaytarsin. 
+// MASALAN: capitalizeWords('name should be a string') return 'name_should_be_a_string'
+
+function toSnakeCase(str: string): string {
     return str
-        .split(" ")
-        .map((word: string) => {
-            if (word.length <= 2) return word;
-            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-        })
-        .join(" ");
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "_")
+        .replace(/[^\w_]/g, "");
 }
 
-console.log(capitalizeWords("name should be a string")); 
+console.log(toSnakeCase("name should be a string")); 
