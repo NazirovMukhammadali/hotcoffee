@@ -435,12 +435,39 @@
 // Shunday function yozing, u berilgan string parametrni snake casega otkazib qaytarsin. 
 // MASALAN: capitalizeWords('name should be a string') return 'name_should_be_a_string'
 
-function toSnakeCase(str: string): string {
-    return str
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, "_")
-        .replace(/[^\w_]/g, "");
+// function toSnakeCase(str: string): string {
+//     return str
+//         .trim()
+//         .toLowerCase()
+//         .replace(/\s+/g, "_")
+//         .replace(/[^\w_]/g, "");
+// }
+
+// console.log(toSnakeCase("name should be a string")); 
+
+// ZH-TASK:
+// Shunday function yozing, u berilgan array parametrni ichidagi eng katta raqamgacha tushib qolgan raqamlarni bir arrayda qaytarsin. 
+// MASALAN: findDisappearedNumbers([1, 3, 4, 7]) return [2, 5, 6]
+
+function findDisappearedNumbers(arr: number[]) {
+    const result: number[] = [];
+    let max = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    } for (let i = 1; i <= max; i++) {
+        let exists = false;
+        for (let ii = 0; ii < arr.length; ii++) {
+            if (arr[ii] === i) {
+                exists = true;
+                break;
+            }
+        } if (!exists) {
+            result.push(i);
+        }
+    }
+    return result;
 }
 
-console.log(toSnakeCase("name should be a string")); 
+console.log(findDisappearedNumbers([1, 3, 4, 7]));
