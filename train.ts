@@ -449,25 +449,39 @@
 // Shunday function yozing, u berilgan array parametrni ichidagi eng katta raqamgacha tushib qolgan raqamlarni bir arrayda qaytarsin. 
 // MASALAN: findDisappearedNumbers([1, 3, 4, 7]) return [2, 5, 6]
 
-function findDisappearedNumbers(arr: number[]) {
-    const result: number[] = [];
-    let max = arr[0];
-    for (let i = 1; i < arr.length; i++) {
-        if (arr[i] > max) {
-            max = arr[i];
-        }
-    } for (let i = 1; i <= max; i++) {
-        let exists = false;
-        for (let ii = 0; ii < arr.length; ii++) {
-            if (arr[ii] === i) {
-                exists = true;
-                break;
-            }
-        } if (!exists) {
-            result.push(i);
-        }
-    }
-    return result;
+// function findDisappearedNumbers(arr: number[]) {
+//     const result: number[] = [];
+//     let max = arr[0];
+//     for (let i = 1; i < arr.length; i++) {
+//         if (arr[i] > max) {
+//             max = arr[i];
+//         }
+//     } for (let i = 1; i <= max; i++) {
+//         let exists = false;
+//         for (let ii = 0; ii < arr.length; ii++) {
+//             if (arr[ii] === i) {
+//                 exists = true;
+//                 break;
+//             }
+//         } if (!exists) {
+//             result.push(i);
+//         }
+//     }
+//     return result;
+// }
+
+// console.log(findDisappearedNumbers([1, 3, 4, 7]));
+
+
+// TASK ZI
+// Shundan function yozing, bu function 3 soniydan so'ng
+// "Hello World!" so'zini qaytarsin.
+// MASALAN: delayHelloWorld("Hello World"); return "Hello World";
+
+function delayHelloWorld(word: string) {
+    const start = Date.now();
+    while (Date.now() - start < 3000) {
+    } return word;
 }
 
-console.log(findDisappearedNumbers([1, 3, 4, 7]));
+console.log(delayHelloWorld("Hello World!"));
