@@ -478,10 +478,31 @@
 // "Hello World!" so'zini qaytarsin.
 // MASALAN: delayHelloWorld("Hello World"); return "Hello World";
 
-function delayHelloWorld(word: string) {
-    const start = Date.now();
-    while (Date.now() - start < 3000) {
-    } return word;
+// function delayHelloWorld(word: string) {
+//     const start = Date.now();
+//     while (Date.now() - start < 3000) {
+//     } return word;
+// }
+
+// console.log(delayHelloWorld("Hello World!"));
+
+
+// ZJ-TASK:
+// Shunday function yozing, u berilgan arrayni ichidagi numberlarni qiymatini hisoblab qaytarsin.
+// MASALAN: reduceNestedArray([1, [1, 2, [4]]]) return 8
+
+function reduceNestedArray(arr: any[]) {
+    let sum = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        let val = arr[i];
+        if (Array.isArray(val)) {
+            sum += reduceNestedArray(val);
+        } else {
+            sum += val;
+        }
+    } return sum;
 }
 
-console.log(delayHelloWorld("Hello World!"));
+console.log(reduceNestedArray([1, [1, 2, [4]]]))
+console.log(reduceNestedArray([1, [1, 2, [2]]]))
