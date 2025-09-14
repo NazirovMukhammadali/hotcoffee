@@ -491,18 +491,27 @@
 // Shunday function yozing, u berilgan arrayni ichidagi numberlarni qiymatini hisoblab qaytarsin.
 // MASALAN: reduceNestedArray([1, [1, 2, [4]]]) return 8
 
-function reduceNestedArray(arr: any[]) {
-    let sum = 0;
+// function reduceNestedArray(arr: any[]) {
+//     let sum = 0;
 
-    for (let i = 0; i < arr.length; i++) {
-        let val = arr[i];
-        if (Array.isArray(val)) {
-            sum += reduceNestedArray(val);
-        } else {
-            sum += val;
-        }
-    } return sum;
+//     for (let i = 0; i < arr.length; i++) {
+//         let val = arr[i];
+//         if (Array.isArray(val)) {
+//             sum += reduceNestedArray(val);
+//         } else {
+//             sum += val;
+//         }
+//     } return sum;
+// }
+
+// console.log(reduceNestedArray([1, [1, 2, [4]]]))
+// console.log(reduceNestedArray([1, [1, 2, [2]]]))
+
+
+function printNumbers() {
+    for (let i = 1; i <= 5; i++) {
+        setTimeout(() => console.log(i), i * 1000);
+    }
 }
 
-console.log(reduceNestedArray([1, [1, 2, [4]]]))
-console.log(reduceNestedArray([1, [1, 2, [2]]]))
+printNumbers();
