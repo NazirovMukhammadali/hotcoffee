@@ -411,6 +411,7 @@
 
 // console.log(removeDuplicate('stringg'));
 
+//***********************************************************/
 
 // ZF-TASK:
 // Shunday function yozing, uni string parametri bolsin.
@@ -430,6 +431,8 @@
 
 // console.log(capitalizeWords("name should be a string")); 
 
+//***********************************************************/
+
 
 // ZG-TASK:
 // Shunday function yozing, u berilgan string parametrni snake casega otkazib qaytarsin. 
@@ -444,6 +447,8 @@
 // }
 
 // console.log(toSnakeCase("name should be a string")); 
+
+//***********************************************************/
 
 // ZH-TASK:
 // Shunday function yozing, u berilgan array parametrni ichidagi eng katta raqamgacha tushib qolgan raqamlarni bir arrayda qaytarsin. 
@@ -472,6 +477,7 @@
 
 // console.log(findDisappearedNumbers([1, 3, 4, 7]));
 
+//***********************************************************/
 
 // TASK ZI
 // Shundan function yozing, bu function 3 soniydan so'ng
@@ -486,6 +492,7 @@
 
 // console.log(delayHelloWorld("Hello World!"));
 
+//***********************************************************/
 
 // ZJ-TASK:
 // Shunday function yozing, u berilgan arrayni ichidagi numberlarni qiymatini hisoblab qaytarsin.
@@ -507,11 +514,36 @@
 // console.log(reduceNestedArray([1, [1, 2, [4]]]))
 // console.log(reduceNestedArray([1, [1, 2, [2]]]))
 
+//***********************************************************/
 
-function printNumbers() {
-    for (let i = 1; i <= 5; i++) {
-        setTimeout(() => console.log(i), i * 1000);
-    }
+// ZK-TASK:
+// Shunday function yozing, u har soniyada bir marta consolega 1 dan 5 gacha bolgan raqamlarni chop etsin va 5 soniyadan keyin ishini toxtatsin.
+// MASALAN: printNumbers()
+
+// function printNumbers() {
+//     for (let i = 1; i <= 5; i++) {
+//         setTimeout(() => console.log(i), i * 1000);
+//     }
+// }
+
+// printNumbers();
+
+//***********************************************************/
+
+// TASK ZL:
+// Shunday function yozing, va bu function parametr
+// sifatida raqamlarni qabul qilsin.Bu function qabul qilingan
+// raqamlarni orqasiga o'girib qaytarsin
+
+// MASALAN: reverseInteger(123456789); return 987654321;
+
+function reverseInteger(raq: number) {
+    const str = raq.toString();
+    let reversedStr = '';
+    for (let i = str.length - 1; i >= 0; i--) {
+        reversedStr += str[i];
+    } return parseInt(reversedStr, 10);
 }
 
-printNumbers();
+console.log(reverseInteger(123456789));
+console.log(reverseInteger(987654321));
