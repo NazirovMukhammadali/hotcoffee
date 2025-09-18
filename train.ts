@@ -537,13 +537,31 @@
 
 // MASALAN: reverseInteger(123456789); return 987654321;
 
-function reverseInteger(raq: number) {
-    const str = raq.toString();
-    let reversedStr = '';
-    for (let i = str.length - 1; i >= 0; i--) {
-        reversedStr += str[i];
-    } return parseInt(reversedStr, 10);
+// function reverseInteger(raq: number) {
+//     const str = raq.toString();
+//     let reversedStr = '';
+//     for (let i = str.length - 1; i >= 0; i--) {
+//         reversedStr += str[i];
+//     } return parseInt(reversedStr, 10);
+// }
+
+// console.log(reverseInteger(123456789));
+// console.log(reverseInteger(987654321));
+
+//***********************************************************/
+
+// ZM-TASK:
+// Shunday function yozing, u function parametrda berilgan sonni har bir raqamini kvadratiga ogirib qaytarsin.
+// MASALAN: squareDigits(9119) return "811181"
+
+function squareDigits(num: number) {
+    let str = String(num);
+    let result = "";
+    for (let i = 0; i < str.length; i++) {
+        let num2 = Number(str[i]);
+        result += (num2 * num2);
+    } return result;
 }
 
-console.log(reverseInteger(123456789));
-console.log(reverseInteger(987654321));
+console.log(squareDigits(9119));
+console.log(squareDigits(2222));
