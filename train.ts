@@ -574,8 +574,9 @@
 // MASALAN: rotateArray([1, 2, 3, 4, 5, 6], 3) return [5, 6, 1, 2, 3, 4]
 
 function rotateArray(arr: number[], num: number) {
-    const cut = arr.splice(-num);
-    return cut.concat(arr);
+    const cut = arr.splice(0, num + 1);
+    return arr.concat(cut);
 }
 
 console.log(rotateArray([1, 2, 3, 4, 5, 6], 3))
+console.log(rotateArray([1, 2, 3, 4, 5, 6], 2))
