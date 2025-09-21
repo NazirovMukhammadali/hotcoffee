@@ -554,14 +554,28 @@
 // Shunday function yozing, u function parametrda berilgan sonni har bir raqamini kvadratiga ogirib qaytarsin.
 // MASALAN: squareDigits(9119) return "811181"
 
-function squareDigits(num: number) {
-    let str = String(num);
-    let result = "";
-    for (let i = 0; i < str.length; i++) {
-        let num2 = Number(str[i]);
-        result += (num2 * num2);
-    } return result;
+// function squareDigits(num: number) {
+//     let str = String(num);
+//     let result = "";
+//     for (let i = 0; i < str.length; i++) {
+//         let num2 = Number(str[i]);
+//         result += (num2 * num2);
+//     } return result;
+// }
+
+// console.log(squareDigits(9119));
+// console.log(squareDigits(2222));
+
+//***********************************************************/
+
+// ZN-TASK:
+// Shunday function yozing, uni array va number parametri bolsin. 
+// Ikkinchi parametrda berilgan raqamli indexgacha arrayni orqasiga ogirib qaytarsin.
+// MASALAN: rotateArray([1, 2, 3, 4, 5, 6], 3) return [5, 6, 1, 2, 3, 4]
+
+function rotateArray(arr: number[], num: number) {
+    const cut = arr.splice(-num);
+    return cut.concat(arr);
 }
 
-console.log(squareDigits(9119));
-console.log(squareDigits(2222));
+console.log(rotateArray([1, 2, 3, 4, 5, 6], 3))
