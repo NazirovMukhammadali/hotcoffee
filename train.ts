@@ -588,13 +588,28 @@
 // Ya'ni ochish("(") va yopish(")") qavslar soni bir xil bolishi kerak.
 // MASALAN: areParenthesesBalanced("string()ichida(qavslar)soni()balansda") return true
 
-function areParenthesesBalanced(str: string): boolean {
-    let counter = 0;
-    for (const char of str) {
-        if (char === "(") counter++;
-        if (char === ")") counter--;
-        if (counter < 0) return false;
-    } return counter === 0;
+// function areParenthesesBalanced(str: string): boolean {
+//     let counter = 0;
+//     for (const char of str) {
+//         if (char === "(") counter++;
+//         if (char === ")") counter--;
+//         if (counter < 0) return false;
+//     } return counter === 0;
+// }
+
+// console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda"));
+
+//***********************************************************/
+
+// ZP-TASK:
+// Shunday function yozing, u parametridagi string ichidagi raqam va sonlarni sonini sanasin.
+// MASALAN: countNumberAndLetters(“string152%\¥”) return {number:3, letter:6}
+
+function countNumberAndLetters(str: string) {
+    const numbers = str.match(/[0-9]/g) || [];
+    const letters = str.match(/[a-zA-Z]/g) || [];
+    return { number: numbers.length, letter: letters.length };
 }
 
-console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda"));
+console.log(countNumberAndLetters("string152 %\¥"))
+console.log(countNumberAndLetters("strin15 %\¥"))
