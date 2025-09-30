@@ -605,11 +605,36 @@
 // Shunday function yozing, u parametridagi string ichidagi raqam va sonlarni sonini sanasin.
 // MASALAN: countNumberAndLetters(“string152%\¥”) return {number:3, letter:6}
 
-function countNumberAndLetters(str: string) {
-    const numbers = str.match(/[0-9]/g) || [];
-    const letters = str.match(/[a-zA-Z]/g) || [];
-    return { number: numbers.length, letter: letters.length };
+// function countNumberAndLetters(str: string) {
+//     const numbers = str.match(/[0-9]/g) || [];
+//     const letters = str.match(/[a-zA-Z]/g) || [];
+//     return { number: numbers.length, letter: letters.length };
+// }
+
+// console.log(countNumberAndLetters("string152 %\¥"))
+// console.log(countNumberAndLetters("strin15 %\¥"))
+
+//***********************************************************/
+
+// TASK ZQ:
+
+// Shunday function yozing, bu function berilgan array parametr
+// ichida ikki marotaba yoki undan ko'p takrorlangan sonlarni alohida
+// arrayda qaytarsin.
+// MASALAN: findDuplicates([1,2,3,4,5,4,3,4]); return [3, 4];
+
+function findDuplicates(arr: number[]): number[] {
+    const counts: Record<number, number> = {};
+    const result: number[] = [];
+
+    for (const num of arr) {
+        counts[num] = (counts[num] || 0) + 1;
+        if (counts[num] === 2) {
+            result.push(num);
+        }
+    }
+
+    return result;
 }
 
-console.log(countNumberAndLetters("string152 %\¥"))
-console.log(countNumberAndLetters("strin15 %\¥"))
+console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4]));
