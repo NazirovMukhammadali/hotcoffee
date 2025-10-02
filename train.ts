@@ -623,18 +623,39 @@
 // arrayda qaytarsin.
 // MASALAN: findDuplicates([1,2,3,4,5,4,3,4]); return [3, 4];
 
-function findDuplicates(arr: number[]): number[] {
+// function findDuplicates(arr: number[]): number[] {
+//     const counts: Record<number, number> = {};
+//     const result: number[] = [];
+
+//     for (const num of arr) {
+//         counts[num] = (counts[num] || 0) + 1;
+//         if (counts[num] === 2) {
+//             result.push(num);
+//         }
+//     }
+
+//     return result;
+// }
+
+// console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4]));
+
+//***********************************************************/
+
+// TASK ZR:
+// Shunday function yozing, bu function parametrdagi array ichida
+// bir marotaba takrorlangan element'ni qaytarsin
+// MASALAN: singleNumber([4, 2, 1, 2, 1]); return 4;
+
+function singleNumber(arr: number[]) {
     const counts: Record<number, number> = {};
-    const result: number[] = [];
 
     for (const num of arr) {
         counts[num] = (counts[num] || 0) + 1;
-        if (counts[num] === 2) {
-            result.push(num);
+        if (counts[num] === 1) {
+            return num;
         }
     }
 
-    return result;
 }
 
-console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4]));
+console.log(singleNumber([4, 2, 1, 2, 1]));
