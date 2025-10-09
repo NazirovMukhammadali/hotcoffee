@@ -646,16 +646,30 @@
 // bir marotaba takrorlangan element'ni qaytarsin
 // MASALAN: singleNumber([4, 2, 1, 2, 1]); return 4;
 
-function singleNumber(arr: number[]) {
-    const counts: Record<number, number> = {};
+// function singleNumber(arr: number[]) {
+//     const counts: Record<number, number> = {};
 
-    for (const num of arr) {
-        counts[num] = (counts[num] || 0) + 1;
-        if (counts[num] === 1) {
-            return num;
+//     for (const num of arr) {
+//         counts[num] = (counts[num] || 0) + 1;
+//         if (counts[num] === 1) {
+//             return num;
+//         }
+//     }
+
+// }
+
+// console.log(singleNumber([4, 2, 1, 2, 1]));
+
+//***********************************************************/
+
+function firstUniqueCharIndex(str: any) {
+    for (let i = 0; i < str.length; i++) {
+        if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
+            return i;
         }
     }
-
+    return -1;
 }
 
-console.log(singleNumber([4, 2, 1, 2, 1]));
+console.log(firstUniqueCharIndex("stamp"));
+console.log(firstUniqueCharIndex("success"));
