@@ -662,14 +662,29 @@
 
 //***********************************************************/
 
-function firstUniqueCharIndex(str: any) {
-    for (let i = 0; i < str.length; i++) {
-        if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
-            return i;
-        }
-    }
-    return -1;
+// function firstUniqueCharIndex(str: any) {
+//     for (let i = 0; i < str.length; i++) {
+//         if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
+//             return i;
+//         }
+//     }
+//     return -1;
+// }
+
+// console.log(firstUniqueCharIndex("stamp"));
+// console.log(firstUniqueCharIndex("success"));
+
+//***********************************************************/
+
+// ZU-TASK:
+// Shunday function yozing, u parametridagi array ichida takrorlanmagan raqamlar yig'indisini qaytarsin.
+// MASALAN: sumOfUnique([1,2,3,2]) return 4
+
+function sumOfUnique(arr: number[]) {
+    const first = arr.filter(num => arr.indexOf(num) === arr.lastIndexOf(num))
+    const result = first.reduce((nn, num) => nn + num, 0)
+    return result;
 }
 
-console.log(firstUniqueCharIndex("stamp"));
-console.log(firstUniqueCharIndex("success"));
+console.log(sumOfUnique([1, 2, 3, 2]));
+console.log(sumOfUnique([1, 2, 3, 2, 1, 4]));
