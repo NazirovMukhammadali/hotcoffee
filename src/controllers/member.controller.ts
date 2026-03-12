@@ -159,5 +159,4 @@ memberController.retriveAuth = async (
 };
 
 
-
 export default memberController;
