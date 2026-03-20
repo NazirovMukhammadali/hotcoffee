@@ -62,6 +62,13 @@
   align-items: center;
 }
 
+.products-container .dishes-table .table td:nth-child(2) {
+  max-width: 200px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
 .products-container .board .dish-container {
   position: relative;
   margin-top: 20px;

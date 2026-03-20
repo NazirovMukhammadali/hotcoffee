@@ -37,8 +37,10 @@
                   <th scope="col">Product Price</th>
                   <th scope="col">Product Left Count</th>
                   <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
                 </tr>
               </thead>
+              <% const typeLabels = { COFFEE: 'Coffee', Coffee: 'Coffee', SMOOTHIE: 'Smoothie', Smoothie: 'Smoothie', DESSERTS: 'Desserts', Desserts: 'Desserts', SNACKS: 'Snacks', Snacks: 'Snacks' }; %>
               <!--  LOOP PRODUCTS: START  -->
               <% products.map(function(value, key){%>
                 <tbody style="background: white">
@@ -49,10 +51,10 @@
                     <%= value.productName %>
                   </td>
                   <td>
-                    <%= value.productCollection %>
+                    <%= typeLabels[value.productCollection] || value.productCollection %>
                   </td>
                   <td>
-                    <%= value.productCollection==='DRINK' ? value.productVolume : value.productSize %>
+                    <%= (String(value.productCollection||'').toUpperCase() === 'SMOOTHIE') ? value.productVolume : value.productSize %>
                   </td>
                   <td>
                     <%= value.productPrice %>
@@ -66,6 +68,11 @@
                       <option value="PROCESS" <%=value.productStatus==='PROCESS' ? 'selected' : '' %>>PROCESS</option>
                       <option value="DELETE" <%=value.productStatus==='DELETE' ? 'selected' : '' %>>DELETE</option>
                     </select>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-sm btn-info edit-product-btn" data-product="<%= encodeURIComponent(JSON.stringify(value)) %>">
+                      Edit
+                    </button>
                   </td>
                 </tbody>
                 <%}) %>
@@ -104,16 +111,15 @@
               <div class="half-input">
                 <label>Product Type</label>
                 <select class="product-collection" name="productCollection">
-                  <option value="DISH" selected>Dish</option>
-                  <option value="SALAD">Salad</option>
-                  <option value="DESSERT">Dessert</option>
-                  <option value="DRINK">Drink</option>
-                  <option value="OTHER">Other</option>
+                  <option value="COFFEE" selected>Coffee</option>
+                  <option value="SMOOTHIE">Smoothie</option>
+                  <option value="DESSERTS">Desserts</option>
+                  <option value="SNACKS">Snacks</option>
                 </select>
               </div>
 
               <div class="half-input" id="product-collection">
-                <label>Dish Volume</label>
+                <label>Coffee Size</label>
                 <select class="product-size" name="productSize">
                   <option value="SMALL">Small</option>
                   <option value="NORMAL" selected>Normal</option>
@@ -123,7 +129,7 @@
               </div>
 
               <div class="half-input" id="product-volume" style="display: none">
-                <label>Drink Volume</label>
+                <label>Smoothie Volume</label>
                 <select class="product-volume" name="productVolume">
                   <option value="0.5">0,5 liters</option>
                   <option value="1" selected>1 liters</option>
@@ -177,6 +183,83 @@
               </button>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div class="modal fade" id="editProductModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit Product</h5>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <form id="edit-product-form">
+              <input type="hidden" name="productId" id="edit-product-id" />
+              <div class="form-group">
+                <label>Product Name</label>
+                <input type="text" class="form-control" name="productName" id="edit-product-name" required />
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Product Price</label>
+                    <input type="number" class="form-control" name="productPrice" id="edit-product-price" required />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Product Left Count</label>
+                    <input type="number" class="form-control" name="productLeftCount" id="edit-product-count" required />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Product Type</label>
+                <select class="form-control" name="productCollection" id="edit-product-collection">
+                  <option value="COFFEE">Coffee</option>
+                  <option value="SMOOTHIE">Smoothie</option>
+                  <option value="DESSERTS">Desserts</option>
+                  <option value="SNACKS">Snacks</option>
+                </select>
+              </div>
+              <div class="row">
+                <div class="col-md-6" id="edit-product-size-wrap">
+                  <div class="form-group">
+                    <label>Coffee Size</label>
+                    <select class="form-control" name="productSize" id="edit-product-size">
+                      <option value="SMALL">Small</option>
+                      <option value="NORMAL">Normal</option>
+                      <option value="LARGE">Large</option>
+                      <option value="SET">Set</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6" id="edit-product-volume-wrap" style="display: none">
+                  <div class="form-group">
+                    <label>Smoothie Volume</label>
+                    <select class="form-control" name="productVolume" id="edit-product-volume">
+                      <option value="0.5">0,5 liters</option>
+                      <option value="1">1 liters</option>
+                      <option value="1.2">1,2 liters</option>
+                      <option value="1.5">1,5 liters</option>
+                      <option value="2">2 liters</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Product Description</label>
+                <textarea class="form-control" name="productDesc" id="edit-product-desc" rows="3"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" id="edit-product-submit">Save Changes</button>
+          </div>
         </div>
       </div>
     </div>

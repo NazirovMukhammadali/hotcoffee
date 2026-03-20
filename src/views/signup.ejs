@@ -5,17 +5,17 @@
   <body>
     <div class="signup-container">
       <form onsubmit="return validateSignupForm()" action="/admin/signup" method="POST" enctype="multipart/form-data">
-        <div class="signup-frame" style="width: 650px">
+        <div class="signup-frame">
           <div class="signup-top">
             <span>Signup</span>
-            <div>Go back <a href="/admin" style="color: #6440fb">Home</a></div>
+            <div>Go back <a href="/admin">Home</a></div>
             <p>
               Already signed up?
-              <a href="/admin/login" style="color: #6440fb">Login</a>
+              <a href="/admin/login">Login</a>
             </p>
           </div>
 
-          <div class="sign-input-frame" style="justify-content: space-between">
+          <div class="sign-input-frame">
             <div class="sign-up-frame">
               <label>Restaurant *</label>
               <input type="text" name="memberNick" class="member-nick" placeholder="Username" value="" />
@@ -25,7 +25,7 @@
               <input type="text" name="memberPhone" class="member-phone" placeholder="Phone" value="" />
             </div>
           </div>
-          <div class="sign-input-frame" style="justify-content: space-between">
+          <div class="sign-input-frame">
             <div class="sign-up-frame">
               <label>Password *</label>
               <input type="password" name="memberPassword" class="member-password" placeholder="Password" value="" />

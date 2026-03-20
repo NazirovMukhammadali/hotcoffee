@@ -19,12 +19,30 @@ class ProductServise {
         this.viewService = new ViewService();
     }
 
+    private getCollectionVariants(collection: string): string[] {
+        const normalized = collection.trim().toUpperCase();
+        const mapping: Record<string, string[]> = {
+            COFFEE: ["COFFEE", "Coffee"],
+            SMOOTHIE: ["SMOOTHIE", "Smoothie"],
+            DESSERTS: ["DESSERTS", "Desserts"],
+            SNACKS: ["SNACKS", "Snacks"],
+            ALL: [],
+        };
+        return mapping[normalized] ?? [collection];
+    }
+
     /* SPA */
     public async getProducts(inquiry: ProductInquiry): Promise<Product[]> {
         const match: T = { productStatus: ProductStatus.PROCESS };
 
-        if (inquiry.productCollection)
-            match.productCollection = inquiry.productCollection;
+        if (inquiry.productCollection) {
+            const variants = this.getCollectionVariants(
+                String(inquiry.productCollection)
+            );
+            if (variants.length) {
+                match.productCollection = { $in: variants };
+            }
+        }
         if (inquiry.search) {
             match.productName = { $regex: new RegExp(inquiry.search, "i") }; // flag "i"
         }
@@ -41,7 +59,6 @@ class ProductServise {
                 { $limit: inquiry.limit * 1 }, //3, Pagination
             ])
             .exec();
-        if (!result.length) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
         return result;
     }
