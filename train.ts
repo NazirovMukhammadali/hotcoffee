@@ -715,3 +715,10 @@
 // console.log(getHighestIndex([5, 4, 12, 4, 8]));
 // console.log(getHighestIndex([10, 9, 8, 11, 6]));
 // console.log(getHighestIndex([10, 9, 8, 11, 12]));
+
+const getUnique = (arr: number[]): number[] => {
+    return [...new Set(arr)];
+  };
+  
+  // Test
+  console.log(getUnique([1, 2, 2, 3, 4, 4, 5])); 
