@@ -689,6 +689,8 @@
 // console.log(sumOfUnique([1, 2, 3, 2]));
 // console.log(sumOfUnique([1, 2, 3, 2, 1, 4]));
 
+//***********************************************************/
+
 // TASK G:
 // Yagona parametrga ega function tuzing.
 // Va bu function parametr orqalik integer ma'lumot turlariga ega bo'lgan bir arrayni qabul qilsin.
@@ -698,6 +700,8 @@
 // function getHighestIndex(arr: number) {
 
 // }
+
+//***********************************************************/
 
 // function getHighestIndex(arr: number[]) {
 //     let katta = arr[0];
@@ -716,9 +720,29 @@
 // console.log(getHighestIndex([10, 9, 8, 11, 6]));
 // console.log(getHighestIndex([10, 9, 8, 11, 12]));
 
-const getUnique = (arr: number[]): number[] => {
-    return [...new Set(arr)];
+//***********************************************************/
+
+// const getUnique = (arr: number[]): number[] => {
+//     return [...new Set(arr)];
+//   };
+  
+//   // Test
+//   console.log(getUnique([1, 2, 2, 3, 4, 4, 5])); 
+
+//***********************************************************/
+
+const mostFrequent = (arr: number[]): number => {
+    const map = new Map<number, number>();
+  
+    arr.forEach(num => {
+      map.set(num, (map.get(num) || 0) + 1);
+    });
+  
+    return [...map.entries()].reduce((a, b) => 
+      a[1] > b[1] ? a : b
+    )[0];
   };
   
   // Test
-  console.log(getUnique([1, 2, 2, 3, 4, 4, 5])); 
+  console.log(mostFrequent([1, 3, 1, 3, 2, 1])); 
+  // 1
