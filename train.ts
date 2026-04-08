@@ -731,18 +731,39 @@
 
 //***********************************************************/
 
-const mostFrequent = (arr: number[]): number => {
-    const map = new Map<number, number>();
+// const mostFrequent = (arr: number[]): number => {
+//     const map = new Map<number, number>();
   
-    arr.forEach(num => {
-      map.set(num, (map.get(num) || 0) + 1);
-    });
+//     arr.forEach(num => {
+//       map.set(num, (map.get(num) || 0) + 1);
+//     });
   
-    return [...map.entries()].reduce((a, b) => 
-      a[1] > b[1] ? a : b
-    )[0];
-  };
+//     return [...map.entries()].reduce((a, b) => 
+//       a[1] > b[1] ? a : b
+//     )[0];
+//   };
+  
+//   // Test
+//   console.log(mostFrequent([1, 3, 1, 3, 2, 1])); 
+
+  //***********************************************************/
+
+  function debounce<T extends (...args: any[]) => void>(
+    fn: T,
+    delay: number
+  ) {
+    let timer: ReturnType<typeof setTimeout>;
+  
+    return (...args: Parameters<T>) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn(...args), delay);
+    };
+  }
   
   // Test
-  console.log(mostFrequent([1, 3, 1, 3, 2, 1])); 
-  // 1
+  const log = debounce((text: string) => {
+    console.log(text);
+  }, 500);
+  
+  log("Hello");
+  log("Hello again");
